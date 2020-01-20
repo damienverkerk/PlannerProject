@@ -1,14 +1,14 @@
 <template>
-  <div class="navigation">
-    <ul class="flex">
-      <li class="mr-6">
-        <router-link to="dashboard" class="text-blue-500 hover:text-blue-800">Dashboard</router-link>
+  <div class="navigation overflow-hidden shadow-lg border-t-4 bg-white mb-4 rounded-b-lg rounded-t border-red-light w-full md:w-1/4">
+    <ul>
+      <li>
+        <router-link to="dashboard" class="block p-4 text-grey-darker font-bold border-purple hover:bg-grey-lighter border-r-4">Dashboard</router-link>
       </li>
-      <li class="mr-6">
-        <router-link to="settings" class="text-blue-500 hover:text-blue-800">Settings</router-link>
+      <li>
+        <router-link to="settings" class="block p-4 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4">Settings</router-link>
       </li>
-      <li class="mr-6">
-        <a @click="logout" class="text-blue-500 hover:text-blue-800" href="#">Log Out</a>
+      <li>
+        <a @click="logout" class="block p-4 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4" href="#">Log Out</a>
       </li>
     </ul>
   </div>

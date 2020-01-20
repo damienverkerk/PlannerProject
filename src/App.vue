@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="flex">
     <Navigation v-if="currentUser"></Navigation>
-    <router-view />
+    <router-view class="flex-1" />
   </div>
 </template>
 

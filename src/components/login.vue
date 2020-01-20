@@ -43,6 +43,7 @@
 							id="password"
 							type="password"
 							placeholder="******************"
+							v-on:keyup.enter="login"
 						/>
 						<p class="text-red-500 text-xs italic">
 							Please choose a password.
