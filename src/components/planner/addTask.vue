@@ -62,6 +62,7 @@ export default {
               name: this.task.name,
           }).then(ref => {
               this.task.name = ''
+
           }).catch(err => {
               console.log(err)
           })

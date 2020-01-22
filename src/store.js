@@ -22,6 +22,17 @@ fb.auth.onAuthStateChanged(user => {
             store.commit('setProjects', projectsArray)
         })
         //realtime updates from our tasks collection
+        fb.tasksCollection.orderBy('createdOn' , "desc").onSnapshot(querySnapshot => {
+            let tasksArray = []
+            querySnapshot.forEach(doc => {
+                console.log(doc)
+                let task = doc.data()
+                task.id = doc.id
+                tasksArray.push(task)
+            })
+            store.commit('setTasks', tasksArray)
+        })
+           
     }
 })
 
@@ -31,6 +42,7 @@ export const store = new Vuex.Store({
         currentUser: null,
         userProfile: {},
         projects: [],
+        currentProject: null,
         tasks: []
     },
     actions: {
@@ -46,9 +58,7 @@ export const store = new Vuex.Store({
                 console.log(err)
             })
         }
-        
-       
-    },
+        },
     mutations: {
         setCurrentUser(state, val) {
             state.currentUser = val
@@ -64,6 +74,17 @@ export const store = new Vuex.Store({
         },
         setTasks(state, val) {
             state.tasks = val
+        }
+    },
+    getters: {
+        getTasksByProjectId: (state) => (id) => {
+            let tasks = []
+            state.tasks.forEach(function(task){
+                if(task.projectId === id){
+                    tasks.push(task)
+                }
+            })
+            return tasks
         }
     }
 });

@@ -1,7 +1,7 @@
 <template>
-  <div class="flex mb-4">
+  <div class="flex mb-4 justify-center text-center">
     <div class="w-full overflow-hidden shadow-lg">
-      <div class="px-6 py-4">
+      <div class="px-6 py-4 text-center">
         <div class="font-bold text-xl mb-2">Pomodoro</div>
         <span class="text-2xl">{{ minutes | doubleDigits }} {{ seconds | doubleDigits }}</span>
       </div>
@@ -21,6 +21,8 @@
           @click="timerReset"
           v-if="state === 'p' || state === 'r'"
         >Reset</button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" 
+        @click="timerSkip" v-if="state === 'p' || state ===  'r' || state === 's'"> Skip </button>
       </div>
     </div>
   </div>
@@ -34,9 +36,20 @@ export default {
       timerOn: false,
       interval: null,
       state: "s",
-      seconds: 0,
-      minutes: 25
+      time: {"work": {
+        "minutes": 25, "seconds": 0, "inUse": false
+      }, "rest": {
+        "minutes" : 1, "seconds": 0, "inUse": false
+      }
+      },
+      minutes: 0,
+      seconds: 0
     };
+  },
+  created: function(){
+    this.minutes = this.time.work.minutes
+    this.seconds = this.time.work.seconds
+    this.time.work.inUse = true;
   },
   methods: {
     timerStart: function() {
@@ -51,7 +64,8 @@ export default {
           this.seconds = this.seconds - 1;
         }
         if (this.minutes === 0 && this.seconds === 0) {
-          this.timerReset;
+          this.adjustTime() 
+
         }
       }, 1000);
     },
@@ -65,9 +79,39 @@ export default {
       this.state = "s";
       this.timerOn = false;
       clearInterval(this.interval);
-      this.minutes = 25;
-      this.seconds = 0;
+      if(this.time.work.inUse){
+        this.minutes = this.time.work.minutes
+        this.seconds = this.time.work.seconds
+      }else{
+        this.minutes = this.time.rest.minutes
+        this.seconds = this.time.rest.seconds
+      }
       console.log("timer is reset");
+    },
+    timerSkip : function(){
+      console.log("minutes: " + this.minutes)
+      this.state = "s"
+      this.timerOn = false
+      clearInterval(this.interval);
+        this.adjustTime()
+    },
+
+    adjustTime : function(){
+      console.log(this.time.work.inUse + "  "+ this.time.rest.inUse)
+      if(this.time.work.inUse === false){
+        this.time.work.inUse = true
+        this.time.rest.inUse = false
+        this.minutes = this.time.work.minutes
+        this.seconds = this.time.work.seconds
+        console.log("werkstand")
+      } else {
+        this.time.work.inUse = false
+        this.time.rest.inUse = true
+        this.minutes = this.time.rest.minutes
+        this.seconds = this.time.rest.seconds
+        console.log("rest")
+      }
+      return
     }
   },
   filters: {
