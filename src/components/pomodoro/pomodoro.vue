@@ -60,8 +60,10 @@ export default {
         if (this.seconds === 0) {
           this.seconds = 59;
           this.minutes = this.minutes - 1;
+          document.title = this.minutes + ":" + this.seconds + '- PlannerApp'
         } else {
           this.seconds = this.seconds - 1;
+          document.title = this.minutes + ":" + this.seconds + '- PlannerApp'
         }
         if (this.minutes === 0 && this.seconds === 0) {
           this.adjustTime() 
@@ -112,7 +114,7 @@ export default {
         console.log("rest")
       }
       return
-    }
+    },
   },
   filters: {
     doubleDigits: function(num) {
