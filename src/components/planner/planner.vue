@@ -1,9 +1,5 @@
 <template>
   <div class="planner">
-    <add-project class="flex w-full"></add-project>
-    <div class="flex mb-4 px-2">
-      <add-task class="flex w-full"></add-task>
-    </div>
     <div class="flex w-full">
       <projects></projects>
   </div>
@@ -11,7 +7,6 @@
 </template>
 
 <script>
-import AddProject from "./addProject";
 import AddTask from "./addTask";
 import Projects from "./projects"
 import { mapState } from 'vuex'
@@ -22,7 +17,6 @@ export default {
   name: "Planner",
   components: {
     AddTask,
-    AddProject,
     Projects
   },
   data: function() {

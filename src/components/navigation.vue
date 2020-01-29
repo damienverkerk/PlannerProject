@@ -1,14 +1,14 @@
 <template>
-  <div class="navigation overflow-hidden shadow-lg border-t-4 bg-white mb-4 rounded-b-lg rounded-t border-red-light w-full md:w-1/4">
+  <div class="navigation overflow-auto bg-gray-800 w-full md:w-1/6">
     <ul>
       <li>
-        <router-link to="dashboard" class="block p-4 text-grey-darker font-bold border-purple hover:bg-grey-lighter border-r-4">Dashboard</router-link>
+        <router-link to="dashboard" class="block p-4 text-white font-bold  hover:text-blue-800 ">Dashboard</router-link>
       </li>
       <li>
-        <router-link to="settings" class="block p-4 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4">Settings</router-link>
+        <router-link to="settings" class="block p-4 text-white  font-bold  hover:text-blue-800">Settings</router-link>
       </li>
       <li>
-        <a @click="logout" class="block p-4 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4" href="#">Log Out</a>
+        <a @click="logout" class="block p-4 text-red-600  font-bold hover:text-blue-800 " href="#">Log Out</a>
       </li>
     </ul>
   </div>
